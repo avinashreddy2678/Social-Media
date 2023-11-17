@@ -1,4 +1,4 @@
-import User from "@/app/models/User/UserModel";
+import User from "@/app/models/UserModel";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import { connect } from "@/app/dbConfig/dbConfig";
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     name: user.name,
   };
   const token = await jwt.sign(tokenData, process.env.SECREAT!, {
-    expiresIn: "1hr",
+    expiresIn: "1d",
   });
   const response = NextResponse.json({
     message: "LoggedIn Success",

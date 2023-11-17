@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-import Posts from "@/app/models/Post/Post";
+import Posts from "@/app/models/PostModal";
 import { connect } from "@/app/dbConfig/dbConfig";
 import { NextRequest, NextResponse } from "next/server";
 import { getDatafromToken } from "@/app/helpers/getDataFromToken";
-import User from "@/app/models/User/UserModel";
+import User from "@/app/models/UserModel";
 connect();
 export async function POST(request:NextRequest) {
     const reqBody=await request.json();
@@ -13,10 +13,10 @@ export async function POST(request:NextRequest) {
     const newpost= await new Posts({
         userid,
         post,
-        postimage
+        postimage,
+        createdAt:Date.now()
     })
     await newpost.save();
-    user.posts.push(newpost);
   await user.save();
     return NextResponse.json({message:"Posted Successfully"});
 }

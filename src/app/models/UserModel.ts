@@ -17,9 +17,10 @@ const UserSchema=new mongoose.Schema({
     profileimg:{
         type:String,
     },
-    posts:{
-        type:Array
-    }
+    FollowingIds: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users'
+    }],
 })
 const User=mongoose.models.users|| mongoose.model("users",UserSchema);
 export default User;

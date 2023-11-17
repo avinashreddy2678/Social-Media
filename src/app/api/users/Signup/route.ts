@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import bcryptjs from 'bcryptjs'
-import User from "@/app/models/User/UserModel";
+import User from "@/app/models/UserModel";
 import { connect } from "@/app/dbConfig/dbConfig";
 
 import { NextRequest,NextResponse } from "next/server";

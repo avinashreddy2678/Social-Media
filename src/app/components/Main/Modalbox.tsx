@@ -3,7 +3,7 @@ import "@uploadthing/react/styles.css";
 import axios from "axios";
 import { UploadButton } from "@/app/utils/uploadthing";
 
-const Modalbox: any = ({ id }: any) => {
+const Modalbox: any = ({ id,refresh }: any) => {
   const [postimage, setpostimage] = React.useState("");
   const [post, setpost] = React.useState("");
   const handlepostsubmit = async (e: any) => {
@@ -13,7 +13,14 @@ const Modalbox: any = ({ id }: any) => {
       post,
       id,
     });
-    console.log(res);
+    //console.log(res);
+    if(res){
+      alert(res.data.message);
+      setpost("");
+      setpostimage("");
+    }
+   
+    refresh();
   };
   return (
     <div>
@@ -32,6 +39,7 @@ const Modalbox: any = ({ id }: any) => {
               placeholder="Write here..."
               className="outline-none px-3 py-5"
               id=""
+              value={post}
               cols={50}
               rows={12}
               onChange={(e) => setpost(e.target.value)}
